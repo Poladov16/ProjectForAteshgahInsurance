@@ -1,0 +1,90 @@
+﻿@model IEnumerable<Ateshgah_Insurance_Project.Models.Loan>
+
+@{
+    ViewBag.Title = "ListOfLoans";
+}
+
+<div class="panel panel-default panel-table">
+    <div class="panel-heading">
+
+        <form method="post" action="NewTransactionsList">
+
+            <div class="row">
+                <div class="col-md-2">
+                    <div class='input-group'>
+                        <input type="text" class="form-control datepicker-here" data-language="en" placeholder="StartDate" autocomplete="off" data_date_format="dd/mm/yyyy" position="top" id="startDate" name="startDate" />
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class='input-group'>
+                        <input type="text" class="form-control datepicker-here" data-language="en" placeholder="EndDate" autocomplete="off" data_date_format="dd/mm/yyyy" position="top" id="endDate" name="endDate" />
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <input class="search" name="searchClient" placeholder="Search Client.." autocomplete="off">
+                </div>
+                <div class="col-md-1">
+                    <input type="submit" id="filterDates" value="Search" class="btn default">
+                </div>
+                <div class="col-md-1" id="dd">
+                    <select class="travelType" name="travelType" style="margin-left:15px">
+                        <option class="dropbtn" value="" selected>Travel Type</option>
+                        <option value="OneWay">One Way</option>
+                        <option value="WithReturn">With Return</option>
+                        <option value="Hourly">Hourly</option>
+                        <option value="Multiple">Multiple</option>
+                    </select>
+                </div><div></div>
+                <div class="col-md-1">
+                    <select class="status" name="status" style="margin-left:15px">
+                        <option class="dropbtn" value="" selected>Status</option>
+                        <option value="Cancelled">Cancelled</option>
+                        <option value="Waiting">Waiting</option>
+                        <option value="Assigned">Assigned</option>
+                        <option value="Processing">Processing</option>
+                        <option value="Hourly">Completed</option>
+                        <option value="Multiple">Error</option>
+                    </select>
+                </div>
+
+                <div class="panel-tools">
+                    <a class="tools-icon">
+                        <i class="zmdi zmdi-file-text zmdi-hc-2x" title="excel" id="newTransactionListExcel"></i>
+                        <i class="zmdi zmdi-print zmdi-hc-2x" id="newTransactionListPrint"></i>
+                    </a>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+<table class="table table-bordered" id="tblDepartment">
+    <thead>
+        <tr>
+            <th>Amount</th>
+            <th>InteresRate</th>
+            <th>LoanPeriod</th>
+            <th>PayoutDate</th>
+            <th>Select</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var loan in Model)
+        {
+            <tr>
+                <td>@loan.Amount</td>
+                <td>@loan.InteresRate</td>
+                <td>@loan.LoanPeriod</td>
+                <td>@loan.PayoutDate</td>
+                <td><a class="delete btnDepartmentDelete" data-id="@loan.LoanId">Select</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
